@@ -1,6 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto:300,400');
+@import "base/reset";
 
-@import 'base/reset';
-@import 'utils/vars';
-@import 'utils/general';
-@import 'components/header';
+@import "utils/vars";
+@import "utils/general";
+@import "utils/animate";
+
+@import "components/menu";
+@import "components/header";
+@import "components/orders";
+@import "components/table";
+@import "components/settings";
+@import "components/stats";
+
