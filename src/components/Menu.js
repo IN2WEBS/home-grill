@@ -21,7 +21,10 @@ const Menu = (props) => {
         // jei props.menu egzistuoja, items priskiriam nauja reiksme
         items = props.menu.map((item,i)=>{
             return (
-                <li key={i}>{item.name}<span>{item.price}€</span></li>
+                <li
+                    onClick={()=>props.addOrder(item)}
+                    key={i}
+                >{item.name}<span>{item.price}€</span></li>
             )
         });
     }

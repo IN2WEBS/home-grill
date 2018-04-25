@@ -1,8 +1,19 @@
 import React from 'react';
+import Table from "./Table";
 
 const Orders = (props) => {
+    const tables = props.tables.map((item, i)=>{
+        return <Table
+            orders={props.orders.filter((order)=> order.table === item)}
+            key={i} name={item}
+            active={props.active}
+            onActiveTable={props.onActiveTable} />
+    });
+
     return (
-        <div>Orders</div>
+        <div className="orders">
+            {tables}
+        </div>
     );
 };
 

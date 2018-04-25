@@ -10,7 +10,7 @@ const Header = (props) => {
 
     return (
         <header className="header">
-            <h2>Menu</h2>
+            <h2>Menu 🍔</h2>
             <h1>Home <span>GRILL</span></h1>
             <ul>
                 {tabs}
