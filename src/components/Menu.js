@@ -1,5 +1,5 @@
 import React from 'react';
-import {ClipLoader} from 'halogen';
+import {ClipLoader} from 'halogenium';
 
 
 const Menu = (props) => {
