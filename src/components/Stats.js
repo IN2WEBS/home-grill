@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Stats = (props) => {
+const Stats = (props)=>{
     return (
-        <div>Stats</div>
+        <div className="stats">
+            <h3>Total:{props.total}€</h3>
+        </div>
     );
 };
-
-export default Stats;
+export default Stats

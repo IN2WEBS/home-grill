@@ -1,4 +1,5 @@
 import React from 'react';
+import {ClipLoader} from 'halogenium';
 
 
 const Menu = (props) => {
@@ -49,7 +50,7 @@ const Menu = (props) => {
             <ul className="menu-items">
                 {items}
             </ul>
-            {props.menu? null : <div className="loader"/>}
+            {props.menu? null : <ClipLoader color="#ccc" size="30px" margin="4px"/>}
         </div>
     );
 };
