@@ -9,6 +9,7 @@ import imgDishes from './images/main_dish.png';
 import imgDeserts from './images/cake.png';
 import imgSpecial from './images/special.png';
 import axios from 'axios';
+import _ from 'lodash';
 
 const API = 'https://enigmatic-cliffs-25405.herokuapp.com/menu';
 
@@ -27,7 +28,10 @@ class App extends React.Component {
         menu: '',
         tables: ['North Table', 'At the window', 'Close to WC', 'Two person table'],
         activeTable: 'North Table',
-        orders: [{name: 'Soup', price: 2.5, table: 'North Table'}]
+        orders: [],
+        total: 0,
+
+
     };
 
     componentDidMount() {
@@ -38,8 +42,28 @@ class App extends React.Component {
 
     //sukurti nauja uzsakyma ir ideti ji i aktyvu stala
     addOrder = (item) => {
-        const orders = [...this.state.orders, {name: item.name, price: item.price, table: this.state.activeTable}];
+        const orders = [...this.state.orders,
+            {
+                name: item.name,
+                price: item.price,
+                table: this.state.activeTable,
+                id: _.uniqueId()
+            }];
         this.setState({orders})
+    };
+
+    removeOrder = (id) => {
+        console.log('id', id);
+        const orders = this.state.orders.filter(order => order.id !== id);
+        this.setState({orders})
+    };
+
+    checkout = (table, amount) => {
+        const orders = this.state.orders.filter(order => order.table !== table);
+        // this.setState({orders, total: this.state.total + total})
+        this.setState((prevState) => {
+            return {orders: orders, total: prevState.total + amount}
+        })
     };
 
     // metodas active tab pakeisti
@@ -60,12 +84,16 @@ class App extends React.Component {
         switch (this.state.activeTab) {
             case 'Orders' :
                 return <Orders
+                    checkout={this.checkout}
+                    removeOrder={this.removeOrder}
                     orders={this.state.orders}
                     onActiveTable={this.switchTable}
                     active={this.state.activeTable}
                     tables={this.state.tables}/>;
             case 'Statistics' :
-                return <Stats/>;
+                return <Stats
+                    total={this.state.total}
+                />;
             case 'Settings' :
                 return <Settings/>;
             default :

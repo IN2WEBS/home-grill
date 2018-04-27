@@ -4,6 +4,8 @@ import Table from "./Table";
 const Orders = (props) => {
     const tables = props.tables.map((item, i)=>{
         return <Table
+            checkout={props.checkout}
+            removeOrder={props.removeOrder}
             orders={props.orders.filter((order)=> order.table === item)}
             key={i} name={item}
             active={props.active}
